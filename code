@@ -1,0 +1,11 @@
+from astroquery.mast import Observations
+import numpy as np
+
+# K2-18b JWST data download
+obs_table = Observations.query_criteria(
+    objectname="K2-18b",
+    obs_collection="JWST"
+)
+products = Observations.get_product_list(obs_table)
+Observations.download_products(products, download_dir="./k2-18b_data")
+print(f"Downloaded {len(products)} files")
